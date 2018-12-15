@@ -7,7 +7,7 @@ LOG_FILE = 'logs'
 INITIAL_ALPHA = 0.1
 INITIAL_GAMMA = 1
 #REWARD = -1
-NUM_TRA_EPISODES = 1000
+NUM_TRA_EPISODES = 5000
 
 PARALLEL_SIZE = 20 # parallel thread size
 ACTION_SIZE = 4 # action size
