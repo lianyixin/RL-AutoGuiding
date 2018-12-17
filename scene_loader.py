@@ -46,7 +46,7 @@ class THORDiscreteEnvironment(object):
     self.s_t      = np.zeros([2048, self.history_length])
     self.s_t1     = np.zeros_like(self.s_t)
     self.s_target = self._tiled_state(self.terminal_state_id)
-
+    np.random.seed(1)
     self.reset()
 
   # public methods
