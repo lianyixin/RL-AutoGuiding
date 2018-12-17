@@ -1,8 +1,8 @@
 # This file contains all the constants in the project.
 
 # System Setting
-USE_GPU = True                  # To use GPU, set True
-VERBOSE = True                  # print out result
+USE_GPU = False                  # To use GPU, set True
+VERBOSE = False                  # print out result
 
 # File saving folder
 LOG_FILE = 'runing_logs'        # name of log folder
@@ -33,7 +33,7 @@ LOCAL_T_MAX = 5                 # number of local accumulated steps
 GRAD_NORM_CLIP = 40.0           # gradient norm clipping
 
 # Evaluation Parameter
-NUM_EVAL_EPISODES = 100         # number of episodes for evaluation
+NUM_EVAL_EPISODES = 1         # number of episodes for evaluation
 
 
 # Scenes and tasks

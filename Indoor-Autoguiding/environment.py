@@ -83,7 +83,7 @@ class GridWorldEnvironment(object):
         self.terminal = False
 
     self.reward = self._reward(self.terminal, self.collided)
-    
+
 
   # create initial state with 4 repeats of the same feature
   def _initialize_state(self, state_id):

@@ -10,6 +10,7 @@ import random
 from A3C_Thread import A3C_Thread
 from network import DRLNetwork
 from utils.rmsprop_applier import RMSPropApplier
+from evaluate import Evaluate
 
 from constants import ACTION_SIZE
 from constants import NUM_THREADS
@@ -30,7 +31,9 @@ class Train(object):
     def __init__(self):
         if not os.path.exists(CHECKPOINT_DIR):
             os.mkdir(CHECKPOINT_DIR)
-        
+
+        # self.evluation_gap = 10**6
+        print(MAX_TIME_STEP)
         self.device = "/gpu:0" if USE_GPU else "/cpu:0"
         self.network_scope = TASK_TYPE
         self.list_of_tasks = TASK_LIST
@@ -166,7 +169,6 @@ class Train(object):
 
         scene, task = self.branches[parallel_index % self.NUM_TASKS]
         key = scene + "-" + task
-
         while self.global_t < MAX_TIME_STEP and not self.stop_requested:
             diff_global_t = training_thread.process(self.sess, self.global_t, self.summary_writer,
                                                 self.summary_op[key], self.summary_placeholders[key])
@@ -176,6 +178,9 @@ class Train(object):
                 print('Save checkpoint at timestamp %d' % self.global_t)
                 self.saver.save(self.sess, CHECKPOINT_DIR + '/' + 'checkpoint', global_step = self.global_t)
                 last_global_t = self.global_t
+
+                print('Evaluate at checkpoint-%d' % self.global_t)
+                Evaluate(self.global_t)
 
     def signal_handler(self, signal, frame):
         print('You pressed Ctrl+C!')
