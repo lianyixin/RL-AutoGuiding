@@ -179,8 +179,6 @@ class Train(object):
                 self.saver.save(self.sess, CHECKPOINT_DIR + '/' + 'checkpoint', global_step = self.global_t)
                 last_global_t = self.global_t
 
-                print('Evaluate at checkpoint-%d' % self.global_t)
-                Evaluate(self.global_t)
 
     def signal_handler(self, signal, frame):
         print('You pressed Ctrl+C!')
